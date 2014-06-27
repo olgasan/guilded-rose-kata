@@ -18,6 +18,20 @@ namespace UnityTest
 		}
 
 		[Test]
+		public void RegularItemDoesNotChangeWithNegativeQuality ()
+		{
+			Item item = CreateMockItem ("Elixir of the Mongoose", 1, -1);
+			
+			Program program = new Program (item);
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (-1, item.Quality);
+			Assert.AreEqual (0, item.SellIn);
+
+		}
+
+
+		[Test]
 		public void RegularItemDecreasesOneQualityPointPerDay ()
 		{
 			Item item = CreateMockItem ("Elixir of the Mongoose", 5, 7);
@@ -37,13 +51,35 @@ namespace UnityTest
 		[Test]
 		public void RegularItemDecreasesTwoQualityPointperDayAfterExpires ()
 		{
-			Item item = CreateMockItem ("Elixir of the Mongoose", 0, 7);
+			Item item = CreateMockItem ("Elixir of the Mongoose", 0, 2);
 			
 			Program program = new Program (item);
 			program.UpdateQuality ();
 			
-			Assert.AreEqual (5, item.Quality, "last day");
+			Assert.AreEqual (0, item.Quality, "last day");
 			Assert.AreEqual (-1, item.SellIn, "last day");
+
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (0, item.Quality, "After last day");
+			Assert.AreEqual (-2, item.SellIn, "After last day");
+		}
+
+		[Test]
+		public void AgedBrieIncreasesOneQualityPointPerDay ()
+		{
+			Item item = CreateMockItem ("Aged Brie", 2, 0);
+			
+			Program program = new Program (item);
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (1, item.Quality, "First day");
+			Assert.AreEqual (1, item.SellIn, "First day");
+			
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (2, item.Quality, "Second day");
+			Assert.AreEqual (0, item.SellIn, "Second day");
 		}
 
 		private Item CreateMockItem (string name, int sellIn, int quality)
