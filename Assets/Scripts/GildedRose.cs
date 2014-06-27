@@ -38,11 +38,11 @@ public class Program
 			
 		};
 		
-		app.UpdateQuality();
+		app.OnDayAdvanced();
 		
 	}
 	
-	public void UpdateQuality()
+	public void OnDayAdvanced()
 	{
 		for (var i = 0; i < items.Count; i++)
 		{

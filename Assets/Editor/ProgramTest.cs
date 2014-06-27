@@ -80,9 +80,18 @@ namespace UnityTest
 			AssertItemValuesAfterOneDay (77, -1, item);
 		}
 
+		[Test]
+		public void SulfurasDoesNotChangesItsQuality ()
+		{
+			Item item = CreateMockItem ("Sulfuras, Hand of Ragnaros", 0, 80);
+			program = new Program (item);
+			
+			AssertItemValuesAfterOneDay (80, 0, item);
+		}
+
 		private void AssertItemValuesAfterOneDay (int expectedQuality, int expectedSellIn, Item item)
 		{
-			program.UpdateQuality (); //TODO: rename by OnDayAdvanced
+			program.OnDayAdvanced (); //TODO: rename by OnDayAdvanced
 
 			Assert.AreEqual (expectedQuality, item.Quality);
 			Assert.AreEqual (expectedSellIn, item.SellIn);
