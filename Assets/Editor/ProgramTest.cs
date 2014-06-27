@@ -89,6 +89,15 @@ namespace UnityTest
 			AssertItemValuesAfterOneDay (80, 0, item);
 		}
 
+		[Test]
+		public void BackstageIncreasesByOneWhenSellInIsGreaterThan10 ()
+		{
+			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+			program = new Program (item);
+			
+			AssertItemValuesAfterOneDay (21, 14, item);
+		}
+
 		private void AssertItemValuesAfterOneDay (int expectedQuality, int expectedSellIn, Item item)
 		{
 			program.OnDayAdvanced (); //TODO: rename by OnDayAdvanced
