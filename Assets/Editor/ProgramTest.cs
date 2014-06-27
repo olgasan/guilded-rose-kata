@@ -90,12 +90,30 @@ namespace UnityTest
 		}
 
 		[Test]
-		public void BackstageIncreasesByOneWhenSellInIsGreaterThan10 ()
+		public void BackstageQualityIncreasesByOneWhenSellInIsGreaterThan10 ()
 		{
 			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 15, 20);
 			program = new Program (item);
 			
 			AssertItemValuesAfterOneDay (21, 14, item);
+		}
+
+		[Test]
+		public void BackstageQualityIncreasesByTwoWhenSellInIsBetween5And10 ()
+		{
+			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 10, 20);
+			program = new Program (item);
+			
+			AssertItemValuesAfterOneDay (22, 9, item);
+		}
+
+		[Test]
+		public void BackstageQualityIncreasesByTwoWhenSellInIsLessThan5 ()
+		{
+			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 5, 20);
+			program = new Program (item);
+			
+			AssertItemValuesAfterOneDay (23, 4, item);
 		}
 
 		private void AssertItemValuesAfterOneDay (int expectedQuality, int expectedSellIn, Item item)
