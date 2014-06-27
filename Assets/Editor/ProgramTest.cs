@@ -100,6 +100,24 @@ namespace UnityTest
 			Assert.AreEqual (-2, item.SellIn, "After last day");
 		}
 
+		[Test]
+		public void QualityDoesNotChangeWhenIsGreaterThan50 ()
+		{
+			Item item = CreateMockItem ("Aged Brie", 1, 50);
+			
+			Program program = new Program (item);
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (50, item.Quality, "last day");
+			Assert.AreEqual (0, item.SellIn, "last day");
+
+			item.Quality = 77;
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (77, item.Quality, "After last day");
+			Assert.AreEqual (-1, item.SellIn, "After last day");
+		}
+
 		private Item CreateMockItem (string name, int sellIn, int quality)
 		{
 			Item item = new Item ();
