@@ -82,6 +82,24 @@ namespace UnityTest
 			Assert.AreEqual (0, item.SellIn, "Second day");
 		}
 
+
+		[Test]
+		public void AgedBrieIncreasesTwoQualityPointperDayAfterExpires ()
+		{
+			Item item = CreateMockItem ("Aged Brie", 0, 0);
+			
+			Program program = new Program (item);
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (2, item.Quality, "last day");
+			Assert.AreEqual (-1, item.SellIn, "last day");
+			
+			program.UpdateQuality ();
+			
+			Assert.AreEqual (4, item.Quality, "After last day");
+			Assert.AreEqual (-2, item.SellIn, "After last day");
+		}
+
 		private Item CreateMockItem (string name, int sellIn, int quality)
 		{
 			Item item = new Item ();
