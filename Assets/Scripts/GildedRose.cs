@@ -17,8 +17,6 @@ public class Program
 
 	static void Main(string[] args)
 	{
-		Debug.Log("OMGHAI!");
-		
 		var app = new Program()
 		{
 			items = new List<Item>
