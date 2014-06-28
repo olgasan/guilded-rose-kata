@@ -23,6 +23,12 @@ namespace UnityTest
 			ComplexItem complexitem = new ComplexItem(item);
 			Assert.AreEqual(item.Quality, complexitem.Quality);
 			Assert.AreEqual(item.SellIn, complexitem.SellIn);
+
+			item.Quality = 0;
+			item.SellIn = 0;
+			Assert.AreEqual(item.Quality, complexitem.Quality);
+			Assert.AreEqual(item.SellIn, complexitem.SellIn);
+
 		}
 	}
 }

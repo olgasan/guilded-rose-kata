@@ -5,19 +5,18 @@ public class ComplexItem
 {
 	public int Quality
 	{
-		get;
-		private set;
+		get { return item.Quality; }
 	}
 
 	public int SellIn
 	{
-		get;
-		private set;
+		get{ return item.SellIn; }
 	}
+
+	private Item item;
 
 	public ComplexItem (Item item)
 	{
-		Quality = item.Quality;
-		SellIn = item.SellIn;
+		this.item = item;
 	}
 }
