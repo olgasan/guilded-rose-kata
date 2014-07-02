@@ -128,7 +128,7 @@ namespace UnityTest
 
 		private void AssertItemValuesAfterOneDay (int expectedQuality, int expectedSellIn, Item item)
 		{
-			program.OnDayAdvanced (); //TODO: rename by OnDayAdvanced
+			program.OnDayAdvanced ();
 
 			Assert.AreEqual (expectedQuality, item.Quality);
 			Assert.AreEqual (expectedSellIn, item.SellIn);

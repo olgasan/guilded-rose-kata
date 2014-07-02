@@ -44,53 +44,57 @@ public class Program
 	{
 		for (var i = 0; i < items.Count; i++)
 		{
-			if (items[i].Name != "Aged Brie" && items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+			Item item = items[i];
+
+			UpdateSellIn (item);
+
+			if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
 			{
-				if (items[i].Quality > 0)
+
+				if (items[i].SellIn < 0)
 				{
-					if (items[i].Name != "Sulfuras, Hand of Ragnaros")
+					items[i].Quality = 0;
+				}
+				else if (item.Quality < 50)
+				{
+
+					if (item.SellIn < 11 && item.SellIn >= 6)
 					{
-						items[i].Quality = items[i].Quality - 1;
+						item.Quality = items[i].Quality + 2;
 					}
+					else if (item.SellIn < 6)
+					{
+						item.Quality = item.Quality + 3;
+					}
+					else
+						item.Quality = item.Quality + 1;
 				}
 			}
 			else
 			{
-				if (items[i].Quality < 50)
+				if (items[i].Name != "Aged Brie")
 				{
-					items[i].Quality = items[i].Quality + 1;
-					
-					if (items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+					if (items[i].Quality > 0)
 					{
-						if (items[i].SellIn < 11)
+						if (items[i].Name != "Sulfuras, Hand of Ragnaros")
 						{
-							if (items[i].Quality < 50)
-							{
-								items[i].Quality = items[i].Quality + 1;
-							}
-						}
-						
-						if (items[i].SellIn < 6)
-						{
-							if (items[i].Quality < 50)
-							{
-								items[i].Quality = items[i].Quality + 1;
-							}
+							items[i].Quality = items[i].Quality - 1;
 						}
 					}
 				}
-			}
-			
-			if (items[i].Name != "Sulfuras, Hand of Ragnaros")
-			{
-				items[i].SellIn = items[i].SellIn - 1;
-			}
-			
-			if (items[i].SellIn < 0)
-			{
-				if (items[i].Name != "Aged Brie")
+				else
 				{
-					if (items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+					if (items[i].Quality < 50)
+					{
+						items[i].Quality = items[i].Quality + 1;
+						
+						
+					}
+				}
+				
+				if (items[i].SellIn < 0)
+				{
+					if (items[i].Name != "Aged Brie")
 					{
 						if (items[i].Quality > 0)
 						{
@@ -102,18 +106,20 @@ public class Program
 					}
 					else
 					{
-						items[i].Quality = items[i].Quality - items[i].Quality;
-					}
-				}
-				else
-				{
-					if (items[i].Quality < 50)
-					{
-						items[i].Quality = items[i].Quality + 1;
+						if (items[i].Quality < 50)
+						{
+							items[i].Quality = items[i].Quality + 1;
+						}
 					}
 				}
 			}
 		}
 	}
 	
+	private void UpdateSellIn (Item item)
+	{
+		if (item.Name != "Sulfuras, Hand of Ragnaros") {
+			item.SellIn = item.SellIn - 1;
+		}
+	}
 }
