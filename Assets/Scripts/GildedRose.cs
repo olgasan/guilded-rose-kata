@@ -46,84 +46,60 @@ public class Program
 		{
 			Item item = items[i];
 
-			UpdateSellIn (item);
-
-			if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+			if (item.Name != "Sulfuras, Hand of Ragnaros")
 			{
-				if (items[i].SellIn < 0)
+				item.SellIn = item.SellIn - 1;
+				
+				if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
 				{
-					items[i].Quality = 0;
-				}
-				else 
-				{
-					if (item.SellIn < 11 && item.SellIn >= 6)
+					if (items[i].SellIn < 0)
 					{
+						items[i].Quality = 0;
+					}
+					else 
+					{
+						if (item.SellIn < 11 && item.SellIn >= 6)
+							item.Quality = IncreaseItemQuality (item, 2);
+						
+						else if (item.SellIn < 6)
+							item.Quality = IncreaseItemQuality (item, 3);
+						
+						else
+							item.Quality = IncreaseItemQuality (item, 1);
+					}
+				}
+				else if (item.Name == "Aged Brie")
+				{
+					if (item.SellIn < 0)
 						item.Quality = IncreaseItemQuality (item, 2);
-					}
-					else if (item.SellIn < 6)
-					{
-						item.Quality = IncreaseItemQuality (item, 3);
-					}
+
 					else
-					{
 						item.Quality = IncreaseItemQuality (item, 1);
-					}
-				}
-			}
-			else
-			{
-				if (items[i].Name != "Aged Brie")
-				{
-					if (items[i].Quality > 0)
-					{
-						if (items[i].Name != "Sulfuras, Hand of Ragnaros")
-						{
-							items[i].Quality = items[i].Quality - 1;
-						}
-					}
 				}
 				else
 				{
-					if (items[i].Quality < 50)
-					{
-						items[i].Quality = items[i].Quality + 1;
-					}
-				}
-				
-				if (items[i].SellIn < 0)
-				{
-					if (items[i].Name != "Aged Brie")
-					{
-						if (items[i].Quality > 0)
-						{
-							if (items[i].Name != "Sulfuras, Hand of Ragnaros")
-							{
-								items[i].Quality = items[i].Quality - 1;
-							}
-						}
-					}
+					if (item.SellIn < 0)
+						item.Quality = DecreaseItemQuality (item, 2);
+
 					else
-					{
-						if (items[i].Quality < 50)
-						{
-							items[i].Quality = items[i].Quality + 1;
-						}
-					}
+						item.Quality = DecreaseItemQuality (item, 1);
 				}
 			}
+
 		}
 	}
 
 	private int IncreaseItemQuality (Item item, int increaseQuantity)
 	{
 		int newQuality = item.Quality + increaseQuantity;
-		return Mathf.Clamp (newQuality, 0, 50);
+		int max = item.Quality < 50 ? 50 : item.Quality;
+		return Mathf.Clamp (newQuality, 0, max);
 	}
-	
-	private void UpdateSellIn (Item item)
+
+	private int DecreaseItemQuality (Item item, int decreaseQuantity)
 	{
-		if (item.Name != "Sulfuras, Hand of Ragnaros") {
-			item.SellIn = item.SellIn - 1;
-		}
+		int newQuality = item.Quality - decreaseQuantity;
+		int min = item.Quality < 0 ? item.Quality : 0;
+		return Mathf.Clamp (newQuality, min, 50);
 	}
 }
