@@ -50,24 +50,24 @@ public class Program
 
 			if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
 			{
-
 				if (items[i].SellIn < 0)
 				{
 					items[i].Quality = 0;
 				}
-				else if (item.Quality < 50)
+				else 
 				{
-
 					if (item.SellIn < 11 && item.SellIn >= 6)
 					{
-						item.Quality = items[i].Quality + 2;
+						item.Quality = IncreaseItemQuality (item, 2);
 					}
 					else if (item.SellIn < 6)
 					{
-						item.Quality = item.Quality + 3;
+						item.Quality = IncreaseItemQuality (item, 3);
 					}
 					else
-						item.Quality = item.Quality + 1;
+					{
+						item.Quality = IncreaseItemQuality (item, 1);
+					}
 				}
 			}
 			else
@@ -87,8 +87,6 @@ public class Program
 					if (items[i].Quality < 50)
 					{
 						items[i].Quality = items[i].Quality + 1;
-						
-						
 					}
 				}
 				
@@ -114,6 +112,12 @@ public class Program
 				}
 			}
 		}
+	}
+
+	private int IncreaseItemQuality (Item item, int increaseQuantity)
+	{
+		int newQuality = item.Quality + increaseQuantity;
+		return Mathf.Clamp (newQuality, 0, 50);
 	}
 	
 	private void UpdateSellIn (Item item)

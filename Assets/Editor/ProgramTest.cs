@@ -126,6 +126,15 @@ namespace UnityTest
 			AssertItemValuesAfterOneDay (0, -1, item);
 		}
 
+		[Test]
+		public void BackstageQualityCannotBeGreaterThan50 ()
+		{
+			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 3, 49);
+			program = new Program (item);
+			
+			AssertItemValuesAfterOneDay (50, 2, item);
+		}
+
 		private void AssertItemValuesAfterOneDay (int expectedQuality, int expectedSellIn, Item item)
 		{
 			program.OnDayAdvanced ();
