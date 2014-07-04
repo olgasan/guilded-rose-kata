@@ -55,25 +55,7 @@ public class Program
 			{
 				item.SellIn = item.SellIn - 1;
 				
-				if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-				{
-					if (items[i].SellIn < 0)
-					{
-						items[i].Quality = 0;
-					}
-					else 
-					{
-						if (item.SellIn < 11 && item.SellIn >= 6)
-							item.Quality = IncreaseItemQuality (item, 2);
-						
-						else if (item.SellIn < 6)
-							item.Quality = IncreaseItemQuality (item, 3);
-						
-						else
-							item.Quality = IncreaseItemQuality (item, 1);
-					}
-				}
-				else if (item.Name == "Aged Brie")
+				if (item.Name == "Aged Brie")
 				{
 					if (item.SellIn < 0)
 						item.Quality = IncreaseItemQuality (item, 2);

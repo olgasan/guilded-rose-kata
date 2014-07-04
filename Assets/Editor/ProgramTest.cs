@@ -92,7 +92,7 @@ namespace UnityTest
 		[Test]
 		public void BackstageQualityIncreasesByOneWhenSellInIsGreaterThan10 ()
 		{
-			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+			Item item = new BackstageItem (15, 20);
 			program = new Program (item);
 			
 			AssertItemValuesAfterOneDay (21, 14, item);
@@ -101,7 +101,7 @@ namespace UnityTest
 		[Test]
 		public void BackstageQualityIncreasesByTwoWhenSellInIsBetween5And10 ()
 		{
-			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 10, 20);
+			Item item = new BackstageItem (10, 20);
 			program = new Program (item);
 			
 			AssertItemValuesAfterOneDay (22, 9, item);
@@ -110,7 +110,7 @@ namespace UnityTest
 		[Test]
 		public void BackstageQualityIncreasesByTwoWhenSellInIsLessThan5 ()
 		{
-			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 5, 20);
+			Item item = new BackstageItem (5, 20);
 			program = new Program (item);
 			
 			AssertItemValuesAfterOneDay (23, 4, item);
@@ -119,7 +119,7 @@ namespace UnityTest
 		[Test]
 		public void BackstageQualityIsZeroWhenExpires ()
 		{
-			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 0, 20);
+			Item item = new BackstageItem (0, 20);
 			program = new Program (item);
 
 			Assert.AreEqual (20, item.Quality);
@@ -129,7 +129,7 @@ namespace UnityTest
 		[Test]
 		public void BackstageQualityCannotBeGreaterThan50 ()
 		{
-			Item item = CreateMockItem ("Backstage passes to a TAFKAL80ETC concert", 3, 49);
+			Item item = new BackstageItem (3, 49);
 			program = new Program (item);
 			
 			AssertItemValuesAfterOneDay (50, 2, item);

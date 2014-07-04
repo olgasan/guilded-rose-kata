@@ -10,7 +10,7 @@ public class BackstageItem : ComplexItem
 
 	public BackstageItem(int sellIn, int quality) : base(sellIn, quality)
 	{
-
+		base.Name = "Backstage passes to a TAFKAL80ETC concert";
 	}
 
 	public override void OnDayIncreased ()

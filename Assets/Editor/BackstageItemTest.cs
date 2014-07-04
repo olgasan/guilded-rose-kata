@@ -46,5 +46,12 @@ namespace UnityTest
 			item.OnDayIncreased();
 			Assert.AreEqual(50, item.Quality);
 		}
+
+		[Test]
+		public void SetItsOwnName ()
+		{
+			ComplexItem item = new BackstageItem (0, 0);
+			Assert.AreEqual ("Backstage passes to a TAFKAL80ETC concert", item.Name);
+		}
 	}
 }
