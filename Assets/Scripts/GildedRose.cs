@@ -46,7 +46,12 @@ public class Program
 		{
 			Item item = items[i];
 
-			if (item.Name != "Sulfuras, Hand of Ragnaros")
+			if (item is ComplexItem)
+			{
+				ComplexItem cItem = item as ComplexItem;
+				cItem.OnDayIncreased ();
+			}
+			else 
 			{
 				item.SellIn = item.SellIn - 1;
 				
@@ -72,7 +77,7 @@ public class Program
 				{
 					if (item.SellIn < 0)
 						item.Quality = IncreaseItemQuality (item, 2);
-
+					
 					else
 						item.Quality = IncreaseItemQuality (item, 1);
 				}
@@ -80,7 +85,7 @@ public class Program
 				{
 					if (item.SellIn < 0)
 						item.Quality = DecreaseItemQuality (item, 2);
-
+					
 					else
 						item.Quality = DecreaseItemQuality (item, 1);
 				}

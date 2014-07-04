@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace UnityTest
 {
 	[TestFixture]
-	public class ProgramTest
+	internal class ProgramTest
 	{
 		private Program program;
 
@@ -83,7 +83,7 @@ namespace UnityTest
 		[Test]
 		public void SulfurasDoesNotChangesItsQuality ()
 		{
-			Item item = CreateMockItem ("Sulfuras, Hand of Ragnaros", 0, 80);
+			ComplexItem item = new SulfurasItem (0, 80);
 			program = new Program (item);
 			
 			AssertItemValuesAfterOneDay (80, 0, item);

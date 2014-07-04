@@ -1,22 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ComplexItem 
+public abstract class ComplexItem : Item
 {
-	public int Quality
+	public ComplexItem (int sellIn, int quality)
 	{
-		get { return item.Quality; }
+		base.SellIn = sellIn;
+		base.Quality = quality;
 	}
 
-	public int SellIn
-	{
-		get{ return item.SellIn; }
-	}
-
-	private Item item;
-
-	public ComplexItem (Item item)
-	{
-		this.item = item;
-	}
+	public abstract void OnDayIncreased ();
 }
