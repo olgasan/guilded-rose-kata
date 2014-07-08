@@ -51,7 +51,7 @@ namespace UnityTest
 		[Test]
 		public void AgedBrieIncreasesOneQualityPointPerDay ()
 		{
-			Item item = CreateMockItem ("Aged Brie", 2, 0);
+			Item item = new AgedBrieItem (2, 0);
 			program = new Program (item);
 
 			AssertItemValuesAfterOneDay (1, 1, item);
@@ -61,7 +61,7 @@ namespace UnityTest
 		[Test]
 		public void AgedBrieIncreasesTwoQualityPointperDayAfterExpires ()
 		{
-			Item item = CreateMockItem ("Aged Brie", 0, 0);
+			Item item = new AgedBrieItem (0, 0);
 			program = new Program (item);
 
 			AssertItemValuesAfterOneDay (2, -1, item);
@@ -71,7 +71,7 @@ namespace UnityTest
 		[Test]
 		public void QualityDoesNotChangeWhenIsGreaterThan50 ()
 		{
-			Item item = CreateMockItem ("Aged Brie", 1, 50);
+			Item item = new AgedBrieItem (1, 50);
 			program = new Program (item);
 
 			AssertItemValuesAfterOneDay (50, 0, item);

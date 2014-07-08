@@ -7,7 +7,7 @@ namespace UnityTest
 	{
 		internal class ComplexItemMock : ComplexItem 
 		{
-			public ComplexItemMock (int si, int q) : base (si, q)
+			public ComplexItemMock (int sellIn, int quality) : base (sellIn, quality)
 			{
 
 			}

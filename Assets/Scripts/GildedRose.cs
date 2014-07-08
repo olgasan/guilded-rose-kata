@@ -55,22 +55,11 @@ public class Program
 			{
 				item.SellIn = item.SellIn - 1;
 				
-				if (item.Name == "Aged Brie")
-				{
-					if (item.SellIn < 0)
-						item.Quality = IncreaseItemQuality (item, 2);
-					
-					else
-						item.Quality = IncreaseItemQuality (item, 1);
-				}
+				if (item.SellIn < 0)
+					item.Quality = DecreaseItemQuality (item, 2);
+				
 				else
-				{
-					if (item.SellIn < 0)
-						item.Quality = DecreaseItemQuality (item, 2);
-					
-					else
-						item.Quality = DecreaseItemQuality (item, 1);
-				}
+					item.Quality = DecreaseItemQuality (item, 1);
 			}
 
 		}
