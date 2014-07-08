@@ -22,7 +22,7 @@ namespace UnityTest
 		[Test]
 		public void RegularItemDoesNotChangeWithNegativeQuality ()
 		{
-			Item item = CreateMockItem ("Elixir of the Mongoose", 1, -1);
+			Item item = new RegularItem (1, -1);
 			program = new Program (item);
 
 			AssertItemValuesAfterOneDay (-1, 0, item);
@@ -31,7 +31,7 @@ namespace UnityTest
 		[Test]
 		public void RegularItemDecreasesOneQualityPointPerDay ()
 		{
-			Item item = CreateMockItem ("Elixir of the Mongoose", 5, 7);
+			Item item = new RegularItem (5, 7);
 			program = new Program (item);
 
 			AssertItemValuesAfterOneDay (6, 4, item);
@@ -41,7 +41,7 @@ namespace UnityTest
 		[Test]
 		public void RegularItemDecreasesTwoQualityPointperDayAfterExpires ()
 		{
-			Item item = CreateMockItem ("Elixir of the Mongoose", 0, 2);
+			Item item = new RegularItem (0, 2);
 			program = new Program (item);
 
 			AssertItemValuesAfterOneDay (0, -1, item);
@@ -143,14 +143,5 @@ namespace UnityTest
 			Assert.AreEqual (expectedSellIn, item.SellIn);
 		}
 
-		private Item CreateMockItem (string name, int sellIn, int quality)
-		{
-			Item item = new Item ();
-			item.Name = name;
-			item.SellIn = sellIn;
-			item.Quality = quality;
-
-			return item;
-		}
 	}
 }

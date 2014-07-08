@@ -26,4 +26,11 @@ public abstract class ComplexItem : Item
 		int max = Quality < 50 ? 50 : Quality;
 		return Mathf.Clamp (newQuality, 0, max);
 	}
+
+	protected int DecreaseItemQuality (int decreaseQuantity)
+	{
+		int newQuality = Quality - decreaseQuantity;
+		int min = Quality < 0 ? Quality : 0;
+		return Mathf.Clamp (newQuality, min, 50);
+	}
 }
